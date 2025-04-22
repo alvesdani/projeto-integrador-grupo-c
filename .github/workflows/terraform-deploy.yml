@@ -40,7 +40,7 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -out=tfplan
 
-      - name: Save Terraform Plan
+      - name: Salvar plano como artefato
         uses: actions/upload-artifact@v3
         with:
           name: tfplan
@@ -50,12 +50,13 @@ jobs:
     name: Terraform Apply (Manual Approval)
     needs: terraform-plan
     runs-on: ubuntu-latest
+    environment: production
     defaults:
       run:
         working-directory: terraform
 
     steps:
-      - name: Download Terraform Plan
+      - name: Baixar plano gerado
         uses: actions/download-artifact@v3
         with:
           name: tfplan
@@ -78,8 +79,3 @@ jobs:
 
       - name: Terraform Apply (manual)
         run: terraform apply tfplan
-
-    environment:
-      name: production
-      deployment_branch_policy:
-        protected_branches: true
