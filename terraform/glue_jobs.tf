@@ -1,6 +1,6 @@
 resource "aws_glue_job" "delivery_fact_taxi_trip" {
   name     = "delivery_fact_taxi_trip"
-  role_arn = "arn:aws:iam::SEU_ID:role/glue_service_role"  # <- Atualize com o ARN real se não for usar interpolação
+  role_arn = "arn:aws:iam::306094678557:role/role_exercicio"  # <- Atualize com o ARN real se não for usar interpolação
 
   glue_version      = "5.0"
   number_of_workers = 2
