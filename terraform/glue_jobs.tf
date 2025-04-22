@@ -23,3 +23,4 @@ resource "aws_glue_job" "delivery_fact_taxi_trip" {
 
   max_retries = 0
   timeout     = 480 
+}
