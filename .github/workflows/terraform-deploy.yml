@@ -78,4 +78,4 @@ jobs:
           terraform_version: 1.5.7
 
       - name: Terraform Apply (manual)
-        run: terraform apply tfplan
+        run: terraform apply terraform/tfplan
