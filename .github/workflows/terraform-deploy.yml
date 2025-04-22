@@ -40,7 +40,7 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -out=tfplan
 
-      - name: Salvar plano como artefato
+      - name: Upload tfplan artifact
         uses: actions/upload-artifact@v4
         with:
           name: tfplan
@@ -56,7 +56,7 @@ jobs:
         working-directory: terraform
 
     steps:
-      - name: Baixar plano gerado
+      - name: Download tfplan artifact
         uses: actions/download-artifact@v4
         with:
           name: tfplan
@@ -77,5 +77,8 @@ jobs:
         with:
           terraform_version: 1.5.7
 
-      - name: Terraform Apply (manual)
+      - name: Debug listagem do tfplan
+        run: ls -lh tfplan || ls -lh . || ls -lh terraform/
+
+      - name: Terraform Apply
         run: terraform apply tfplan
