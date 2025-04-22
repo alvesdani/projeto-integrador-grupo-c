@@ -51,13 +51,16 @@ jobs:
     needs: terraform-plan
     runs-on: ubuntu-latest
     environment: production
+    defaults:
+      run:
+        working-directory: terraform
 
     steps:
       - name: Baixar plano gerado
         uses: actions/download-artifact@v4
         with:
           name: tfplan
-          path: .
+          path: terraform/
 
       - name: Checkout
         uses: actions/checkout@v3
