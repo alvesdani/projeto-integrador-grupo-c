@@ -2,14 +2,13 @@ name: Terraform Plan & Apply
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
     paths:
       - 'terraform/**'
 
 jobs:
-  terraform-plan:
-    name: Terraform Plan
+  terraform-plan-and-apply:
+    name: Terraform Plan and Apply
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -39,46 +38,6 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
-
-      - name: Upload tfplan artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: tfplan
-          path: terraform/tfplan
-
-  terraform-apply:
-    name: Terraform Apply (Manual Approval)
-    needs: terraform-plan
-    runs-on: ubuntu-latest
-    environment: production
-    defaults:
-      run:
-        working-directory: terraform
-
-    steps:
-      - name: Download tfplan artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: tfplan
-          path: terraform/
-
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Configurar AWS
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.5.7
-
-      - name: Debug listagem do tfplan
-        run: ls -lh tfplan || ls -lh . || ls -lh terraform/
 
       - name: Terraform Apply
         run: terraform apply tfplan
