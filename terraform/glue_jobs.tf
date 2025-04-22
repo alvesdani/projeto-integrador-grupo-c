@@ -18,7 +18,7 @@ resource "aws_glue_job" "delivery_fact_taxi_trip" {
     "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
-    "--enable-glue-datacatalog"        = "true" #revisar
+    "--enable-glue-datacatalog"        = "true" #revisar para criar tabela automaticamente
   }
 
   max_retries = 0
