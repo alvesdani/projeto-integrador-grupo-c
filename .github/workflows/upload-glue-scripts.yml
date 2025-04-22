@@ -3,9 +3,9 @@ name: Upload Glue Scripts to S3
 on:
   push:
     branches:
-      - main             # ✅ Só executa quando o push for na branch main
+      - main
     paths:
-      - 'glue_jobs/**/*.py'  # ✅ Só se arquivos Python dentro de glue_jobs forem alterados
+      - 'glue_jobs/**/*.py'
 
 jobs:
   deploy:
