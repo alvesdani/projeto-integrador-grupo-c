@@ -14,7 +14,7 @@ dim_payment_type_df = spark.createDataFrame([
 ], ["payment_type", "payment_desc"])
 
 # Caminho de saída no S3
-output_path = "s3://eedb-015-2025-1-grupo-c-projeto-integrador/delivery/dim_payment_type/"
+output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/delivery/dim_payment_type/"
 
 # Escreve como Parquet
 dim_payment_type_df.write.mode("overwrite").parquet(output_path)

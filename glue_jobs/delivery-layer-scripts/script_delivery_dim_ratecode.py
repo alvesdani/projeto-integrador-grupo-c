@@ -14,7 +14,7 @@ dim_ratecode_df = spark.createDataFrame([
 ], ["ratecode_id", "ratecode_desc"])
 
 # Caminho S3 para salvar
-output_path = "s3://eedb-015-2025-1-grupo-c-projeto-integrador/delivery/dim_ratecode/"
+output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/delivery/dim_ratecode/"
 
 # Escreve como Parquet
 dim_ratecode_df.write.mode("overwrite").parquet(output_path)
