@@ -78,15 +78,6 @@ resource "aws_sfn_state_machine" "pipeline" {
         Parameters = {
           JobName = "delivery_dim_vendor"
         }
-        Next = "dummy_job"
-      }
-
-      "dummy_job" = {
-        Type     = "Task"
-        Resource = "arn:aws:states:::glue:startJobRun.sync"
-        Parameters = {
-          JobName = "dummy_job"
-        }
         Next = "delivery_fact_taxi_trip"
       }
 
