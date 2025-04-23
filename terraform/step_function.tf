@@ -1,3 +1,4 @@
+#Test
 resource "aws_sfn_state_machine" "pipeline" {
   name     = "pipeline"
   role_arn = "arn:aws:iam::306094678557:role/service-role/StepFunctions--role-9pee1bvoa"
