@@ -13,7 +13,7 @@ spark = SparkSession.builder \
     .getOrCreate()
     
 # Ler o arquivo Json
-df = spark.read.json("s3://eedb-015-2025-1-grupo-c-projeto-integrador/raw/holiday/public_holidays_2024.json")
+df = spark.read.json("s3://eedb-015-2025-1-projeto-integrador-grupo-c/raw/holiday/public_holidays_2024.json")
 
 
 ### Padronizar nomenclatura
@@ -38,7 +38,7 @@ df = df.withColumn("date", to_date("date", "yyyy-MM-dd"))
 
 
 ### Salva dados
-parquet_output_path = "s3://eedb-015-2025-1-grupo-c-projeto-integrador/trusted/holiday/"
+parquet_output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/trusted/holiday/"
 
 # Salvar o DataFrame como parquet no S3
 df.write.mode("overwrite").parquet(parquet_output_path)
