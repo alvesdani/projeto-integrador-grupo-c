@@ -1,80 +1,48 @@
-resource "aws_iam_role" "step_function_role" {
-  name = "step_function_execution_role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [{
-      Effect = "Allow",
-      Principal = {
-        Service = "states.amazonaws.com"
-      },
-      Action = "sts:AssumeRole"
-    }]
-  })
-}
-
-resource "aws_iam_role_policy" "step_function_policy" {
-  name = "step_function_policy"
-  role = aws_iam_role.step_function_role.id
-
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "lambda:InvokeFunction"
-        ],
-        Resource = "arn:aws:lambda:us-east-1:306094678557:function:lambda-save-files-in-s3"
-      },
-      {
-        Effect = "Allow",
-        Action = [
-          "glue:StartJobRun",
-          "glue:GetJobRun",
-          "glue:GetJobRuns"
-        ],
-        Resource = "*"
-      }
-    ]
-  })
-}
-
 resource "aws_sfn_state_machine" "pipeline" {
-  name     = "etl_pipeline_step_function"
-  role_arn = aws_iam_role.step_function_role.arn
+  name     = "pipeline"
+  role_arn = "arn:aws:iam::306094678557:role/service-role/StepFunctions--role-9pee1bvoa"
 
   definition = jsonencode({
-    Comment = "Executa lambda + glue em sequência",
-    StartAt = "LambdaInvoke",
+    Comment = "Step Function para orquestrar Lambda e Glue Jobs"
+    StartAt = "Lambda Invoke"
     States = {
-      LambdaInvoke = {
-        Type     = "Task",
-        Resource = "arn:aws:states:::lambda:invoke",
+      "Lambda Invoke" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::lambda:invoke"
         Parameters = {
-          FunctionName = "arn:aws:lambda:us-east-1:306094678557:function:lambda-save-files-in-s3",
-          Payload      = {}
-        },
-        ResultPath = "$.lambda",
-        Next       = "GlueJobHoliday"
-      },
-      GlueJobHoliday = {
-        Type     = "Task",
-        Resource = "arn:aws:states:::glue:startJobRun.sync",
+          FunctionName = "arn:aws:lambda:us-east-1:306094678557:function:lambda-save-files-in-s3:$LATEST"
+          Payload = {
+            "input.$" = "$"
+          }
+        }
+        ResultPath = "$.lambdaResult"
+        Retry = [
+          {
+            ErrorEquals     = ["Lambda.ServiceException", "Lambda.AWSLambdaException", "Lambda.SdkClientException", "Lambda.TooManyRequestsException"]
+            IntervalSeconds = 1
+            MaxAttempts     = 3
+            BackoffRate     = 2
+          }
+        ]
+        Next = "holiday_trusted"
+      }
+
+      "holiday_trusted" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
         Parameters = {
           JobName = "trusted_holiday_ny"
-        },
-        ResultPath = "$.glue_holiday",
-        Next       = "GlueJobTaxi"
-      },
-      GlueJobTaxi = {
-        Type     = "Task",
-        Resource = "arn:aws:states:::glue:startJobRun.sync",
+        }
+        Next = "taxi_trusted"
+      }
+
+      "taxi_trusted" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
         Parameters = {
           JobName = "trusted_taxi_travel_records"
-        },
-        ResultPath = "$.glue_taxi",
-        End        = true
+        }
+        End = true
       }
     }
   })
