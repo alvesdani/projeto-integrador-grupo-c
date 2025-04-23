@@ -1,4 +1,3 @@
-#Test
 resource "aws_sfn_state_machine" "pipeline" {
   name     = "pipeline"
   role_arn = "arn:aws:iam::306094678557:role/service-role/StepFunctions--role-9pee1bvoa"
@@ -42,6 +41,51 @@ resource "aws_sfn_state_machine" "pipeline" {
         Resource = "arn:aws:states:::glue:startJobRun.sync"
         Parameters = {
           JobName = "trusted_taxi_travel_records"
+        }
+        Next = "delivery_dim_location"
+      }
+
+      "delivery_dim_location" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
+        Parameters = {
+          JobName = "delivery_dim_location"
+        }
+        Next = "delivery_dim_ratecode"
+      }
+
+      "delivery_dim_ratecode" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
+        Parameters = {
+          JobName = "delivery_dim_ratecode"
+        }
+        Next = "delivery_dim_payment_type"
+      }
+
+      "delivery_dim_payment_type" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
+        Parameters = {
+          JobName = "delivery_dim_payment_type"
+        }
+        Next = "delivery_dim_vendor"
+      }
+
+      "delivery_dim_vendor" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
+        Parameters = {
+          JobName = "delivery_dim_vendor"
+        }
+        Next = "delivery_fact_taxi_trip"
+      }
+
+      "delivery_fact_taxi_trip" = {
+        Type     = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
+        Parameters = {
+          JobName = "delivery_fact_taxi_trip"
         }
         End = true
       }
