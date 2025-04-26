@@ -87,8 +87,8 @@ resource "aws_iam_role_policy" "lambda-s3-write-policy" {
           "Resource": [
               "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/taxi/*",
               "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/holiday/*",
-              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/taxi/*",
-              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/holiday/*"
+              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c-nv/raw/taxi/*",
+              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c-nv/raw/holiday/*"
           ]
       }
     ]

@@ -9,13 +9,13 @@ resource "aws_glue_job" "trusted_taxi_travel_records" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/trusted-layer-scripts/script_trusted.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/trusted-layer-scripts/script_trusted.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                     = "python"
-    "--TempDir"                          = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                          = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                   = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"          = "true"
@@ -36,13 +36,13 @@ resource "aws_glue_job" "trusted_holiday_ny" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/trusted-layer-scripts/script_holiday_trusted.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/trusted-layer-scripts/script_holiday_trusted.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                     = "python"
-    "--TempDir"                          = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                          = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                   = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"          = "true"
@@ -63,13 +63,13 @@ resource "aws_glue_job" "delivery_fact_taxi_trip" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/delivery-layer-scripts/script_delivery_fact_taxi_trip.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/delivery-layer-scripts/script_delivery_fact_taxi_trip.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                   = "python"
-    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"        = "true" #revisar!!
@@ -90,13 +90,13 @@ resource "aws_glue_job" "delivery_dim_vendor" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/delivery-layer-scripts/script_delivery_dim_vendor.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/delivery-layer-scripts/script_delivery_dim_vendor.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                   = "python"
-    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"        = "true"
@@ -117,13 +117,13 @@ resource "aws_glue_job" "delivery_dim_payment_type" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/delivery-layer-scripts/script_delivery_dim_payment_type.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/delivery-layer-scripts/script_delivery_dim_payment_type.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                   = "python"
-    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"        = "true"
@@ -144,13 +144,13 @@ resource "aws_glue_job" "delivery_dim_ratecode" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/delivery-layer-scripts/script_delivery_dim_ratecode.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/delivery-layer-scripts/script_delivery_dim_ratecode.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                   = "python"
-    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"        = "true"
@@ -171,13 +171,13 @@ resource "aws_glue_job" "delivery_dim_location" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/delivery-layer-scripts/script_delivery_dim_location.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/delivery-layer-scripts/script_delivery_dim_location.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                   = "python"
-    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"        = "true"
@@ -198,13 +198,13 @@ resource "aws_glue_job" "dummy_job" {
 
   command {
     name            = "glueetl"
-    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/delivery-layer-scripts/dummy.py"
+    script_location = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/delivery-layer-scripts/dummy.py"
     python_version  = "3"
   }
 
   default_arguments = {
     "--job-language"                   = "python"
-    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/temp/"
+    "--TempDir"                        = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/temp/"
     "--enable-metrics"                 = "true"
     "--enable-continuous-cloudwatch-log" = "true"
     "--enable-glue-datacatalog"        = "true"

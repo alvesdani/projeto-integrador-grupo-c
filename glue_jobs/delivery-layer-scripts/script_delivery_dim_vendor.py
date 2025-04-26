@@ -11,7 +11,7 @@ dim_vendor_df = spark.createDataFrame([
 ], ["vendor_id", "vendor_name"])
 
 # Caminho de saída no S3
-output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/delivery/dim_vendor/"
+output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/delivery/dim_vendor/"
 
 # Escrever como Parquet
 dim_vendor_df.write.mode("overwrite").parquet(output_path)

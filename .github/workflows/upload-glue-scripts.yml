@@ -25,4 +25,4 @@ jobs:
 
       - name: Fazer upload dos scripts para o S3
         run: |
-          aws s3 sync glue_jobs/ s3://eedb-015-2025-1-projeto-integrador-grupo-c/glue/scripts/ --delete
+          aws s3 sync glue_jobs/ s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/ --delete
