@@ -10,7 +10,7 @@ on:
 
 jobs:
   terraform-plan-apply:
-    name: Terraform Plan $ Apply
+    name: Terraform Plan & Apply
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -39,7 +39,7 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan -lock=false
 
       - name: Terraform Apply
         run: terraform apply tfplan
