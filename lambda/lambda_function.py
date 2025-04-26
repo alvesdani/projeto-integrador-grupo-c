@@ -92,4 +92,3 @@ def lambda_handler(event, context):
 
     except Exception as e:
         return {"status": "erro", "message": str(e)}
-
