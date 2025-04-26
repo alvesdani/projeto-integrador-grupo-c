@@ -13,30 +13,31 @@ resource "aws_iam_role" "AWSLambdaBasicExecutionRole" {
         }
     ]
   })
+}
 
-  inline_policy {
-    name   = "lambda-logs-policy"
-    policy = jsonencode({
-      "Version" : "2012-10-17",
-      "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": "logs:CreateLogGroup",
-            "Resource": "arn:aws:logs:us-east-1:306094678557:*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-            ],
-            "Resource": [
-                "arn:aws:logs:us-east-1:306094678557:log-group:/aws/lambda/lambda-save-files-in-s3:*"
-            ]
-        }
-      ]
-    })
-  }
+resource "aws_iam_role_policy" "lambda-logs-policy" {
+  name = "lambda-logs-policy"
+  role = aws_iam_role.AWSLambdaBasicExecutionRole.id
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": "logs:CreateLogGroup",
+          "Resource": "arn:aws:logs:us-east-1:306094678557:*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "logs:CreateLogStream",
+              "logs:PutLogEvents"
+          ],
+          "Resource": [
+              "arn:aws:logs:us-east-1:306094678557:log-group:/aws/lambda/lambda-save-files-in-s3:*"
+          ]
+      }
+    ]
+  })
 }
 
 # Role 2
@@ -54,25 +55,26 @@ resource "aws_iam_role" "lambda-write-raw-data-s3" {
         }
     ]
   })
+}
 
-  inline_policy {
-    name   = "lambda-s3-write-policy"
-    policy = jsonencode({
-      "Version" : "2012-10-17",
-      "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": "s3:PutObject",
-            "Resource": [
-                "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/taxi/*",
-                "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/holiday/*",
-                "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/taxi/*",
-                "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/holiday/*"
-            ]
-        }
-      ]
-    })
-  }
+resource "aws_iam_role_policy" "lambda-s3-write-policy" {
+  name = "lambda-s3-write-policy"
+  role = aws_iam_role.lambda-write-raw-data-s3.id
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": "s3:PutObject",
+          "Resource": [
+              "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/taxi/*",
+              "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/holiday/*",
+              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/taxi/*",
+              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/holiday/*"
+          ]
+      }
+    ]
+  })
 }
 
 # Role 3
@@ -90,21 +92,22 @@ resource "aws_iam_role" "monitoring_sf" {
         }
     ]
   })
+}
 
-  inline_policy {
-    name   = "monitoring-policy"
-    policy = jsonencode({
-      "Version" : "2012-10-17",
-      "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "lambda:InvokeFunction",
-                "logs:*"
-            ],
-            "Resource": "*"
-        }
-      ]
-    })
-  }
+resource "aws_iam_role_policy" "monitoring-policy" {
+  name = "monitoring-policy"
+  role = aws_iam_role.monitoring_sf.id
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "lambda:InvokeFunction",
+              "logs:*"
+          ],
+          "Resource": "*"
+      }
+    ]
+  })
 }
