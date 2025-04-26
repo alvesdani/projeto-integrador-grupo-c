@@ -66,7 +66,7 @@ resource "aws_iam_role" "lambda-write-raw-data-s3" {
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "sts:AssumeRole",  # Corrigido para sts:AssumeRole
+            "Action": "sts:AssumeRole",
             "Principal": {
                 "Service": "lambda.amazonaws.com"
             }
