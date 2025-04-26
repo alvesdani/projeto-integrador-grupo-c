@@ -1,0 +1,18 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"states:CreateStateMachine",
+				"states:UpdateStateMachine",
+				"states:DescribeStateMachine",
+				"states:ValidateStateMachineDefinition",
+				"states:ListStateMachines",
+				"states:ListStateMachineVersions",
+				"states:ListTagsForResource"
+			],
+			"Resource": "arn:aws:states:us-east-1:306094678557:stateMachine:*"
+		}
+	]
+}

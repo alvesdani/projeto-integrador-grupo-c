@@ -1,0 +1,28 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:DeleteObject",
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/glue/scripts/*",
+                "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c-nv/glue/scripts/*",
+                "arn:aws:s3:::eedb-015-2025-1-terraform-state/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": "s3:ListBucket",
+            "Resource": [
+                "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador",
+                "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c",
+                "arn:aws:s3:::eedb-015-2025-1-terraform-state"
+            ]
+        }
+    ]
+}

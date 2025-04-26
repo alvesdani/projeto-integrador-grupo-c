@@ -1,0 +1,29 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "AthenaQueryExecution",
+			"Effect": "Allow",
+			"Action": [
+				"athena:StartQueryExecution",
+				"athena:StopQueryExecution",
+				"athena:GetQuery*"
+			],
+			"Resource": "arn:aws:athena:us-east-1:306094678557:workgroup/primary"
+		},
+		{
+			"Sid": "AthenaResultBucket",
+			"Effect": "Allow",
+			"Action": [
+				"s3:PutObject*",
+				"s3:Get*"
+			],
+			"Resource": [
+				"arn:aws:s3:::306094678557-athena-query-result-nv/",
+				"arn:aws:s3:::306094678557-athena-query-result-nv/*",
+				"arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador",
+				"arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/*"
+			]
+		}
+	]
+}

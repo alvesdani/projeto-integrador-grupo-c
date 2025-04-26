@@ -1,0 +1,17 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"glue:CreateJob",
+				"glue:GetJob",
+				"glue:GetTags",
+				"glue:UpdateJob",
+				"glue:DeleteJob",
+				"iam:PassRole"
+			],
+			"Resource": "*"
+		}
+	]
+}
