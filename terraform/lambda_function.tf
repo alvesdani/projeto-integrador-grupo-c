@@ -1,6 +1,3 @@
-provider "aws" {
-  region = "us-east-1"  # Substitua pela sua região AWS desejada
-}
 
 # Role 1
 resource "aws_iam_role" "AWSLambdaBasicExecutionRole" {
