@@ -33,7 +33,7 @@ resource "aws_iam_role_policy" "lambda-logs-policy" {
               "logs:PutLogEvents"
           ],
           "Resource": [
-              "arn:aws:logs:us-east-1:306094678557:log-group:/aws/lambda/lambda-save-files-in-s3:*"
+              "arn:aws:logs:us-east-1:306094678557:log-group:/aws/lambda/lambda_function:*"
           ]
       }
     ]

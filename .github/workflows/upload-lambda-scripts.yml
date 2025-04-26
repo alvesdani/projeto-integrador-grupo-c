@@ -6,7 +6,7 @@ on:
       - main
       - feature/mona_deploy
     paths:
-      - 'lambda/**/*.py'
+      - 'lambda/*.py'
 
 jobs:
   deploy:
