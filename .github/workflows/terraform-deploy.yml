@@ -32,12 +32,12 @@ jobs:
         with:
           terraform_version: 1.5.7
 
+      - name: Initialize Terraform
+        run: terraform init -reconfigure  # Garante que o backend seja configurado corretamente
+
       - name: Force unlock if needed
         run: |
-          terraform force-unlock fb1ed8a6-7240-e2e8-1d70-d7cb587f1004  # Substitua pelo ID do lock no erro
-
-      - name: Terraform Init
-        run: terraform init
+          terraform force-unlock fb1ed8a6-7240-e2e8-1d70-d7cb587f1004  # Substitua pelo ID de lock no erro, caso o erro de lock persistir
 
       - name: Terraform Validate
         run: terraform validate
