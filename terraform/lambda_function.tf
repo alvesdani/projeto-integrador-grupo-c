@@ -24,7 +24,7 @@ resource "aws_iam_role" "AWSLambdaBasicExecutionRole" {
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "sts:AssumeRole",  # Corrigido para sts:AssumeRole
+            "Action": "sts:AssumeRole",
             "Principal": {
                 "Service": "lambda.amazonaws.com"
             }
