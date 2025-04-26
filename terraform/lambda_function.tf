@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "lambda_s3" {
-  bucket = "eedb-015-2025-1-projeto-integrador-grupo-c"
+  bucket = "eedb-015-2025-1-projeto-integrador-grupo-c-nv"
   acl    = "private"
 }
 
