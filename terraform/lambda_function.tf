@@ -1,7 +1,7 @@
 # Provider específico para Lambda
 provider "aws" {
   alias  = "lambda"
-  region = "us-east-1"  # Região específica para o Lambda, caso necessário
+  region = "us-east-1"
 }
 
 resource "aws_s3_bucket" "lambda_s3" {
