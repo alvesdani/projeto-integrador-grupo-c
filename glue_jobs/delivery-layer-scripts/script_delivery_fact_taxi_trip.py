@@ -5,9 +5,9 @@ from pyspark.sql.functions import sha2, concat_ws, col, to_date, lit, when, date
 spark = SparkSession.builder.appName("Gerar fact_taxi_trip com feriado e dia da semana").getOrCreate()
 
 # Caminhos
-trusted_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/trusted/taxi_travel_records/"
-holiday_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/delivery/dim_holiday_ny/"
-output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/delivery/fact_taxi_trip/"
+trusted_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/trusted/taxi_travel_records/"
+holiday_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/delivery/dim_holiday_ny/"
+output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/delivery/fact_taxi_trip/"
 
 # Lê dados trusted
 df = spark.read.option("basePath", trusted_path).parquet(trusted_path)

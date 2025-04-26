@@ -15,7 +15,7 @@ spark = SparkSession.builder \
     .getOrCreate()
     
 # Ler o arquivo Parquet
-df = spark.read.parquet("s3://eedb-015-2025-1-projeto-integrador-grupo-c/raw/taxi/")
+df = spark.read.parquet("s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/raw/taxi/")
 
 ### Padronizar nomenclatura
 
@@ -164,7 +164,7 @@ print(f"Total de registros no DF principal após filtro de valores negativos: {d
 print(f"Registros com valores negativos descartados: {df_negative_values.count()}")
 print(f"Total final de registros descartados: {df_invalid_data.count()}")
 
-parquet_output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c/trusted/taxi_travel_records/"
+parquet_output_path = "s3://eedb-015-2025-1-projeto-integrador-grupo-c-nv/trusted/taxi_travel_records/"
 
 df = df.withColumn("year", F.year("tpep_pickup_datetime")) \
        .withColumn("month", F.month("tpep_pickup_datetime")) \

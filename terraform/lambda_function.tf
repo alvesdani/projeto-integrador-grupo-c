@@ -1,3 +1,21 @@
+# Provider específico para Lambda
+provider "aws" {
+  alias  = "lambda"
+  region = "us-east-1"
+}
+
+resource "aws_s3_bucket" "lambda_s3" {
+  bucket = "eedb-015-2025-1-projeto-integrador-grupo-c-nv"
+  acl    = "private"
+}
+
+resource "aws_s3_object" "lambda_code" {
+  bucket = aws_s3_bucket.lambda_s3.bucket
+  key    = "lambda_function.py"
+  source = "lambda/scripts/lambda_function.py"
+  acl    = "private"
+}
+
 # Role 1
 resource "aws_iam_role" "AWSLambdaBasicExecutionRole" {
   name               = "AWSLambdaBasicExecutionRole"
@@ -6,7 +24,7 @@ resource "aws_iam_role" "AWSLambdaBasicExecutionRole" {
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "sts:AssumeRole",  # Corrigido para sts:AssumeRole
+            "Action": "sts:AssumeRole",
             "Principal": {
                 "Service": "lambda.amazonaws.com"
             }
@@ -48,7 +66,7 @@ resource "aws_iam_role" "lambda-write-raw-data-s3" {
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "sts:AssumeRole",  # Corrigido para sts:AssumeRole
+            "Action": "sts:AssumeRole",
             "Principal": {
                 "Service": "lambda.amazonaws.com"
             }
@@ -69,8 +87,8 @@ resource "aws_iam_role_policy" "lambda-s3-write-policy" {
           "Resource": [
               "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/taxi/*",
               "arn:aws:s3:::eedb-015-2025-1-grupo-c-projeto-integrador/raw/holiday/*",
-              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/taxi/*",
-              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c/raw/holiday/*"
+              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c-nv/raw/taxi/*",
+              "arn:aws:s3:::eedb-015-2025-1-projeto-integrador-grupo-c-nv/raw/holiday/*"
           ]
       }
     ]
@@ -111,4 +129,3 @@ resource "aws_iam_role_policy" "monitoring-policy" {
     ]
   })
 }
-

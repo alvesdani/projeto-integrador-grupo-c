@@ -1,0 +1,17 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "GlueCatalog",
+			"Effect": "Allow",
+			"Action": [
+				"glue:Get*"
+			],
+			"Resource": [
+				"arn:aws:glue:us-east-1:486152105877:catalog",
+				"arn:aws:glue:us-east-1:486152105877:table/default/*",
+				"arn:aws:glue:us-east-1:486152105877:database/default"
+			]
+		}
+	]
+}
