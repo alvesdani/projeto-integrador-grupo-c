@@ -1,4 +1,4 @@
-name: Terraform Plan and Apply
+name: Terraform Plan & Apply
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - 'terraform/**'
 
 jobs:
-  terraform-plan-and-apply:
-    name: Terraform Plan and Apply
+  terraform-plan-apply:
+    name: Terraform Plan $ Apply
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -9,7 +9,6 @@ s3 = boto3.client('s3')
 # Nome do bucket
 S3_BUCKET = "eedb-015-2025-1-projeto-integrador-grupo-c-nv"
 
-
 def lambda_handler(event, context):
     # print("Executou o lambda")
     try:
