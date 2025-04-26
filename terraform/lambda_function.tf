@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "lambda_s3" {
 resource "aws_s3_object" "lambda_code" {
   bucket = aws_s3_bucket.lambda_s3.bucket
   key    = "lambda_function.py"
-  source = "lambda/scripts/lambda_function.py"  # Caminho local do arquivo .py
+  source = "lambda/scripts/lambda_function.py"
   acl    = "private"
 }
 
