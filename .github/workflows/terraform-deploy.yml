@@ -42,4 +42,4 @@ jobs:
         run: terraform plan -out=tfplan -lock=false
 
       - name: Terraform Apply
-        run: terraform apply tfplan -lock=false
+        run: terraform apply -lock=false tfplan
