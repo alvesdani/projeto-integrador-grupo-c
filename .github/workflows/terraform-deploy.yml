@@ -1,3 +1,13 @@
+name: Terraform Plan & Apply
+
+on:
+  push:
+    branches:
+      - main
+      - feature/mona_deploy
+    paths:
+      - 'terraform/**'
+
 jobs:
   terraform-plan-and-apply:
     name: Terraform Plan and Apply
