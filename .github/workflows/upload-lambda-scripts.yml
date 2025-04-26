@@ -27,3 +27,4 @@ jobs:
       - name: Fazer upload dos scripts para o S3
         run: |
           aws s3 sync lambda/ s3://eedb-015-2025-1-projeto-integrador-grupo-c/lambda/scripts/ --delete
+          
