@@ -1,3 +1,9 @@
+# Provider específico para Lambda
+provider "aws" {
+  alias  = "lambda"
+  region = "us-east-1"  # Região específica para o Lambda, caso necessário
+}
+
 resource "aws_s3_bucket" "lambda_s3" {
   bucket = "eedb-015-2025-1-projeto-integrador-grupo-c"
   acl    = "private"
