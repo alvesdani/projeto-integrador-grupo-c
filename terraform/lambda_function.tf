@@ -1,3 +1,15 @@
+resource "aws_s3_bucket" "lambda_s3" {
+  bucket = "eedb-015-2025-1-projeto-integrador-grupo-c"
+  acl    = "private"
+}
+
+resource "aws_s3_object" "lambda_code" {
+  bucket = aws_s3_bucket.lambda_s3.bucket
+  key    = "lambda_function.py"
+  source = "lambda/scripts/lambda_function.py"  # Caminho local do arquivo .py
+  acl    = "private"
+}
+
 # Role 1
 resource "aws_iam_role" "AWSLambdaBasicExecutionRole" {
   name               = "AWSLambdaBasicExecutionRole"
