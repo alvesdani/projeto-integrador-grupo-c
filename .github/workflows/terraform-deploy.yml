@@ -2,7 +2,9 @@ name: Terraform Plan & Apply
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - feature/mona_deploy
     paths:
       - 'terraform/**'
 
